@@ -1,0 +1,231 @@
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4587
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT prod_name, prod_price FROM products WHERE prod_price = 2.50;
++---------------+------------+
+| prod_name     | prod_price |
++---------------+------------+
+| Carrots       |       2.50 |
+| TNT (1 stick) |       2.50 |
++---------------+------------+
+2 rows in set (0.08 sec)
+
+mysql> Terminal close -- exit!
+Aborted
+ERROR 1045 (28000): Access denied for user 'alex'@'162-193-95-74.lightspeed.mssnks.sbcglobal.net' (using password: NO)
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7260
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| crashcourse        |
+| innodb             |
+| istm6202           |
+| mysql              |
+| performance_schema |
+| sys                |
+| tmp                |
++--------------------+
+8 rows in set (0.07 sec)
+
+mysql> SELECT prod_name, prod_price FROM products WHERE prod_price = 2.50;
++---------------+------------+
+| prod_name     | prod_price |
++---------------+------------+
+| Carrots       |       2.50 |
+| TNT (1 stick) |       2.50 |
++---------------+------------+
+2 rows in set (0.07 sec)
+
+mysql> quit;
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7265
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT prod_name, prod_price FROM products WHERE prod_price = 2.50;
++---------------+------------+
+| prod_name     | prod_price |
++---------------+------------+
+| Carrots       |       2.50 |
+| TNT (1 stick) |       2.50 |
++---------------+------------+
+2 rows in set (0.06 sec)
+
+mysql>  SELECT prod_name, prod_price FROM products WHERE prod_name = 'fuses';
++-----------+------------+
+| prod_name | prod_price |
++-----------+------------+
+| Fuses     |       3.42 |
++-----------+------------+
+1 row in set (0.07 sec)
+
+mysql> SELECT prod_name, prod_price FROM produts WHERE prod_price < 10;
+ERROR 1146 (42S02): Table 'crashcourse.produts' doesn't exist
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.08 sec)
+
+mysql> SELECT prod_name, prod_price FROM products WHERE prod_price < 10;
++---------------+------------+
+| prod_name     | prod_price |
++---------------+------------+
+| .5 ton anvil  |       5.99 |
+| 1 ton anvil   |       9.99 |
+| Carrots       |       2.50 |
+| Fuses         |       3.42 |
+| Oil can       |       8.99 |
+| Sling         |       4.49 |
+| TNT (1 stick) |       2.50 |
++---------------+------------+
+7 rows in set (0.06 sec)
+
+mysql> SELECT prod_name, prod_price FROM products WHERE prod_price <= 10;
++----------------+------------+
+| prod_name      | prod_price |
++----------------+------------+
+| .5 ton anvil   |       5.99 |
+| 1 ton anvil    |       9.99 |
+| Bird seed      |      10.00 |
+| Carrots        |       2.50 |
+| Fuses          |       3.42 |
+| Oil can        |       8.99 |
+| Sling          |       4.49 |
+| TNT (1 stick)  |       2.50 |
+| TNT (5 sticks) |      10.00 |
++----------------+------------+
+9 rows in set (0.06 sec)
+
+mysql> SELECT ven_id, prod_name FROM products WHERE ved_id <> 1003;
+ERROR 1054 (42S22): Unknown column 'ven_id' in 'field list'
+mysql> SELECT vend_id, prod_name FROM products WHERE vend_id <> 1003;
++---------+--------------+
+| vend_id | prod_name    |
++---------+--------------+
+|    1001 | .5 ton anvil |
+|    1001 | 1 ton anvil  |
+|    1001 | 2 ton anvil  |
+|    1002 | Fuses        |
+|    1005 | JetPack 1000 |
+|    1005 | JetPack 2000 |
+|    1002 | Oil can      |
++---------+--------------+
+7 rows in set (0.12 sec)
+
+mysql> SELECT vend_id, prod_name FROM produts WHERE vend_id != 1003;
+ERROR 1146 (42S02): Table 'crashcourse.produts' doesn't exist
+mysql> SELECT vend_id, prod_name FROM products WHERE vend_id != 1003;
++---------+--------------+
+| vend_id | prod_name    |
++---------+--------------+
+|    1001 | .5 ton anvil |
+|    1001 | 1 ton anvil  |
+|    1001 | 2 ton anvil  |
+|    1002 | Fuses        |
+|    1005 | JetPack 1000 |
+|    1005 | JetPack 2000 |
+|    1002 | Oil can      |
++---------+--------------+
+7 rows in set (0.06 sec)
+
+mysql> SELECT prod_name, prod_price FROM products WHERE prod_price BETWEEN 5 and 10;
+Ctrl-C -- sending "KILL QUERY 7265" to server ...
+Ctrl-C -- query aborted.
+Ctrl-C -- sending "KILL 7265" to server ...
+Ctrl-C -- query aborted.
+Ctrl-C -- exit!
+Aborted
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7271
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT prod_name, prod_price FROM products WHERE prod_price BETWEEN 5 and 10;
++----------------+------------+
+| prod_name      | prod_price |
++----------------+------------+
+| .5 ton anvil   |       5.99 |
+| 1 ton anvil    |       9.99 |
+| Bird seed      |      10.00 |
+| Oil can        |       8.99 |
+| TNT (5 sticks) |      10.00 |
++----------------+------------+
+5 rows in set (0.06 sec)
+
+mysql> SELECT prod_name FROM products WHERE prod_price IS NULL;
+Empty set (0.07 sec)
+
+mysql> SELECT cust_id FROM customers WHERE cust_email IS NULL;
++---------+
+| cust_id |
++---------+
+|   10002 |
+|   10005 |
++---------+
+2 rows in set (0.06 sec)
+
+mysql> 

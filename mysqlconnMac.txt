@@ -1,0 +1,2 @@
+./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p
+

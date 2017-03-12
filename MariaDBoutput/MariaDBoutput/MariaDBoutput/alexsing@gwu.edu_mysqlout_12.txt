@@ -1,0 +1,181 @@
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7327
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Ctrl-C -- exit!
+Aborted
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7331
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT AVG(prod_price) AS
+    -> avg
+    -> '
+    '> ;
+    '> 
+    '> ;
+    '> urn
+    '> ;
+    '> Ctrl-C -- exit!
+Aborted
+ERROR 1045 (28000): Access denied for user 'alex'@'162-193-95-74.lightspeed.mssnks.sbcglobal.net' (using password: NO)
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7333
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT AVG(prod_price) AS avg_price FROM products;
++-----------+
+| avg_price |
++-----------+
+| 16.133571 |
++-----------+
+1 row in set (0.14 sec)
+
+mysql> SELECT AVG(prod_price) AS 
+    -> avg_price
+    -> FROM products
+    -> WHERE vend_id = 1003;
++-----------+
+| avg_price |
++-----------+
+| 13.212857 |
++-----------+
+1 row in set (0.06 sec)
+
+mysql> SELECT COUNT (*) AS um_cust FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) AS um_cust FROM customers' at line 1
+mysql> SELECT COUNT (*) AS num_cust FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) AS num_cust FROM customers' at line 1
+mysql> SELECT COUNT (*) AS num_cust FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) AS num_cust FROM customers' at line 1
+mysql> SELECT COUNT(*) AS num_cust FROM customers;
++----------+
+| num_cust |
++----------+
+|        5 |
++----------+
+1 row in set (0.06 sec)
+
+mysql> SELECT COUNT(cust_email)  AS num_cust FROM customers;
++----------+
+| num_cust |
++----------+
+|        3 |
++----------+
+1 row in set (0.06 sec)
+
+mysql> SELECT MAX(prod_price) AS max_porice FROM products;
++------------+
+| max_porice |
++------------+
+|      55.00 |
++------------+
+1 row in set (0.08 sec)
+
+mysql> SELECT MIN(prod_price) AS min_price FROM products;
++-----------+
+| min_price |
++-----------+
+|      2.50 |
++-----------+
+1 row in set (0.06 sec)
+
+mysql> SELECT SUM(quanitfy) AS
+    -> items_ordered
+    -> FROM orderitems
+    -> WHERE order_num = 20005;
+ERROR 1054 (42S22): Unknown column 'quanitfy' in 'field list'
+mysql> SELECT SUM(quantity) AS items_ordered FROM orderitems WHERE order_num = 20005;
++---------------+
+| items_ordered |
++---------------+
+|            19 |
++---------------+
+1 row in set (0.06 sec)
+
+mysql> SELECT SUM(item_price*quantity)
+    -> AS total_price
+    -> FROM orderitems
+    -> WHERE order_num = 20005;
++-------------+
+| total_price |
++-------------+
+|      149.87 |
++-------------+
+1 row in set (0.09 sec)
+
+mysql> SELECT AVG(DISTINCT prod_price)
+    -> AS avg_price
+    -> FROM products
+    -> WHERE vend_id = 1003;
++-----------+
+| avg_price |
++-----------+
+| 15.998000 |
++-----------+
+1 row in set (0.12 sec)
+
+mysql> SELECT COUNT(*) AS num_items, 
+    -> MIN(prod_price) AS
+    -> 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> SELECT COUNT(*) AS num_items,
+    -> MIN(prod_price) AS
+    -> price_min,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> SELECT COUNT (*) AS num_items,
+    -> MIN(prod_price) AS price_min,
+    -> MAS(prod_price) AS price_max,
+    -> 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) AS num_items,
+MIN(prod_price) AS price_min,
+MAS(prod_price) AS price_max,' at line 1
+mysql> SELECT COUNT (*) AS num_items, MIN(prod_price) AS price_min, MAX(prod_price) AS price_max, AVG(prod_price) AS price_avg FROM products;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) AS num_items, MIN(prod_price) AS price_min, MAX(prod_price) AS price_max, AVG' at line 1
+mysql> SELECT COUNT(*) AS num_items, MIN(prod_price) AS price_min, MAX(prod_price) AS price_max, AVG(prod_price) AS price_avg FROM products;
++-----------+-----------+-----------+-----------+
+| num_items | price_min | price_max | price_avg |
++-----------+-----------+-----------+-----------+
+|        14 |      2.50 |     55.00 | 16.133571 |
++-----------+-----------+-----------+-----------+
+1 row in set (0.07 sec)
+
+mysql> quit;

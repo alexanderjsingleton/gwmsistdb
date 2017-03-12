@@ -1,0 +1,17 @@
+mysql -h istm6405.cerdgdqyztgz.us-east-1.rds.amazonaws.com -P 3306 -u ross -p
+
+mysql -h istm6405.cerdgdqyztgz.us-east-1.rds.amazonaws.com -P 3306 -u ross -p --tee=showmysqlout.txt
+event_time command_type argument 
+
+show full processlist;
+kill 173;
+show open tables;
+
+SELECT * FROM mysql.general_log g;
+
+1230178
+1230403
+1248922
+592832
+
+select ticker, unit_price, units,amount, type, tradedate, p.memo  from porttrans p, security s where p.uniqueid = s.uniqueid and = "O" and type = 5;

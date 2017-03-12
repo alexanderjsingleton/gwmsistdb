@@ -1,0 +1,399 @@
+ERROR 1045 (28000): Access denied for user 'alex'@'162-193-95-74.lightspeed.mssnks.sbcglobal.net' (using password: YES)
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7846
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> quit;
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7932
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> Terminal close -- exit!
+Aborted
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8170
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE customers
+    -> (;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> show tables;;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+7 rows in set (0.06 sec)
+
+ERROR: 
+No query specified
+
+mysql> select * from customers;
++---------+----------------+-------------------------+-------------+------------+----------+--------------+--------------+---------------------+
+| cust_id | cust_name      | cust_address            | cust_city   | cust_state | cust_zip | cust_country | cust_contact | cust_email          |
++---------+----------------+-------------------------+-------------+------------+----------+--------------+--------------+---------------------+
+|       1 | Glenn Frey     | 1New York Minute Street | New York    | NY         | 10001    | USA          | Glenn        | glenn@eagles.com    |
+|       2 | Don Henley     | 100 Hotel Califronia    | Los Angeles | CA         | 90210    | USA          | Don          | don@eagles.com      |
+|   10001 | Coyote Inc.    | 200 Maple Lane          | Detroit     | MI         | 44444    | USA          | Y Lee        | ylee@coyote.com     |
+|   10002 | Mouse House    | 333 Fromage Lane        | Columbus    | OH         | 43333    | USA          | Jerry Mouse  | NULL                |
+|   10003 | Wascals        | 1 Sunny Place           | Muncie      | IN         | 42222    | USA          | Jim Jones    | rabbit@wascally.com |
+|   10004 | Yosemite Place | 829 Riverside Drive     | Phoenix     | AZ         | 88888    | USA          | Y Sam        | sam@yosemite.com    |
+|   10005 | E Fudd         | 4545 53rd Street        | Chicago     | IL         | 54545    | USA          | E Fudd       | NULL                |
+|   10006 | Pep E. LaPew   | 100 Main Street         | Los Angeles | CA         | 90046    | USA          | NULL         | NULL                |
+|   10007 | Pep E. LaPew   | 100 Main Street         | Los Angeles | CA         | 90046    | USA          | NULL         | NULL                |
+|   10008 | PEP E. LaPew   | 100 Main Street         | Los Angeles | CA         | 90046    | USA          | NULL         | NULL                |
+|   10009 | Pep E. LaPew   | 100 Main Street         | Los Angeles | CA         | 90046    | USA          | NULL         | NULL                |
+|   10010 | M. Martian     | 42 Galaxy Way           | New York    | NY         | 11213    | USA          | NULL         | NULL                |
+|   10011 | Pep E. LawPew  | 100 Main Street         | Los Angeles | CA         | 90046    | USA          | NULL         | NULL                |
+|   10012 | M. Martian     | 42 Galaxy Way           | New York    | NY         | 11213    | USA          | NULL         | NULL                |
++---------+----------------+-------------------------+-------------+------------+----------+--------------+--------------+---------------------+
+14 rows in set (0.12 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+7 rows in set (0.07 sec)
+
+mysql> CREATE TABLE customers
+    -> (
+    -> cust_id int NOT NULL AUTO_INCREMENT,
+    -> cust_name char(50) NOT NULL ,
+    -> cust_address char(50) NULL ,
+    -> cust_city char(50) NULL ,
+    -> cust_state char(5) NULL ,
+    -> cust_zip char(10) NULL ,
+    -> cust_country char(50) NULL,
+    -> cust_contact char(50) NULL ,
+    -> cust_email char(255) NULL ,
+    -> PRIMARY KEY (cust_id)
+    -> ) ENGINE=Aria;
+ERROR 1286 (42000): Unknown storage engine 'Aria'
+mysql> show engines;
++--------------------+---------+----------------------------------------------------------------+--------------+------+------------+
+| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |
++--------------------+---------+----------------------------------------------------------------+--------------+------+------------+
+| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |
+| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |
+| MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables      | NO           | NO   | NO         |
+| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |
+| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |
+| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |
+| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |
+| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |
+| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |
++--------------------+---------+----------------------------------------------------------------+--------------+------+------------+
+9 rows in set (0.07 sec)
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8174
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE TABLE orders
+    -> (
+    -> order_num int NOT NULL AUTO_INCREMENT,
+    -> order_dte datetime NOT NULL ,
+    -> cvust_id int NOT NULL ,
+    -> PRIMARY KEY (order_num)
+    -> ) ENGINE = Aria;
+ERROR 1046 (3D000): No database selected
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE orders ( order_num int NOT NULL AUTO_INCREMENT, order_dte datetime NOT NULL , cvust_id int NOT NULL , PRIMARY KEY (order_num) ) ENGINE = Aria;
+ERROR 1286 (42000): Unknown storage engine 'Aria'
+mysql> CREATE TABLE orders2 ( order_num int NOT NULL AUTO_INCREMENT, order_dte datetime NOT NULL , cvust_id int NOT NULL , PRIMARY KEY (order_num) ) ENGINE = Aria;
+ERROR 1286 (42000): Unknown storage engine 'Aria'
+mysql> CREATE TABLE orders2 ( order_num int NOT NULL AUTO_INCREMENT, order_dte datetime NOT NULL , cvust_id int NOT NULL , PRIMARY KEY (order_num) ) ENGINE = InnoDB;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| orders2               |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+8 rows in set (0.06 sec)
+
+mysql> select * from orders2
+    -> ;
+Empty set (0.07 sec)
+
+mysql> CREATE TABLE orders ( order_num int NOT NULL AUTO_INCREMENT, order_dte datetime NOT NULL , cvust_id int NOT NULL , PRIMARY KEY (order_num) ) ENGINE = InnoDB;
+ERROR 1050 (42S01): Table 'orders' already exists
+mysql> CREATE TABLE vendors
+    -> (
+    -> vend_id int NOT NULL AUTO_INCREMENT,
+    -> vend_name char(50) NOT NULL ,
+    -> vend_address char(50) NULL ,
+    -> vend_city char(50) NULL ,
+    -> vend_state char(5) NULL ,
+    -> vend_zip char(10) NULL .
+    -> vend_country char(50) NULL,
+    -> PRIMARY KEY (vend_id)
+    -> ) ENGINE=Aria;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.
+vend_country char(50) NULL,
+PRIMARY KEY (vend_id)
+) ENGINE=Aria' at line 8
+mysql> CREATE TABLE vendors ( vend_id int NOT NULL AUTO_INCREMENT, vend_name char(50) NOT NULL , vend_address char(50) NULL , vend_city char(50) NULL , vend_state char(5) NULL , vend_zip char(10) NULL , vend_country char(50) NULL, PRIMARY KEY (vend_id) ) ENGINE=Aria;
+ERROR 1286 (42000): Unknown storage engine 'Aria'
+mysql> CREATE TABLE orderitems
+    -> (
+    -> order_num int NOT NULL ,
+    -> order_item int NOT NULL ,
+    -> prod_id char(10) NOT NULL ,
+    -> quantity int NOT NULL ,
+    -> item_price decimal(8,2) NOT NULL ,
+    -> PRIMARY KEY (order_num, order_item)
+    -> ) ENGINE=Aria;
+ERROR 1286 (42000): Unknown storage engine 'Aria'
+mysql> ;
+ERROR: 
+No query specified
+
+mysql> CREATE TABLE orderitems
+    -> (
+    -> order_num int NOT NULL ,
+    -> order_item int NOT NULL ,
+    -> prod_id char(10) NOT NULL ,
+    -> quantity int NOT NULL DEFAULT 1,
+    -> item_price decimal(8,2) NOT NULL ,
+    -> PRIMARY KEY (order_num, order_item)
+    -> ) ENGINE=Aria;
+Ctrl-C -- sending "KILL QUERY 8174" to server ...
+Ctrl-C -- query aborted.
+Ctrl-C -- sending "KILL 8174" to server ...
+Ctrl-C -- query aborted.
+Ctrl-C -- exit!
+Aborted
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8184
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE orderitems
+    ->     -> (
+    ->     -> order_num int NOT NULL ,
+    ->     -> order_item int NOT NULL ,
+    ->     -> prod_id char(10) NOT NULL ,
+    ->     -> quantity int NOT NULL DEFAULT 1,
+    ->     -> item_price decimal(8,2) NOT NULL ,
+    ->     -> PRIMARY KEY (order_num, order_item)
+    ->     -> ) ENGINE=Aria;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> (
+    -> order_num int NOT NULL ,
+    -> order_item int NOT NULL ,
+    -> pro' at line 2
+mysql>  CREATE TABLE orderitems
+    ->  (
+    ->     order_num int NOT NULL ,
+    ->     order_item int NOT NULL ,
+    ->     prod_id char(10) NOT NULL ,
+    ->     quantity int NOT NULL DEFAULT 1,
+    ->     item_price decimal(8,2) NOT NULL ,
+    ->     PRIMARY KEY (order_num, order_item)
+    ->     ) ENGINE=Aria;
+ERROR 1286 (42000): Unknown storage engine 'Aria'
+mysql> ALTER TABLE vendors
+    -> ADD vend_phone CHAR(20);
+ERROR 2006 (HY000): MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    8186
+Current database: crashcourse
+
+Query OK, 0 rows affected (1.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM vendors;
++---------+----------------+-----------------+-------------+------------+----------+--------------+------------+
+| vend_id | vend_name      | vend_address    | vend_city   | vend_state | vend_zip | vend_country | vend_phone |
++---------+----------------+-----------------+-------------+------------+----------+--------------+------------+
+|    1001 | Anvils R Us    | 123 Main Street | Southfield  | MI         | 48075    | USA          | NULL       |
+|    1002 | LT Supplies    | 500 Park Street | Anytown     | OH         | 44333    | USA          | NULL       |
+|    1003 | ACME           | 555 High Street | Los Angeles | CA         | 90046    | USA          | NULL       |
+|    1004 | Furball Inc.   | 1000 5th Avenue | New York    | NY         | 11111    | USA          | NULL       |
+|    1005 | Jet Set        | 42 Galaxy Road  | London      | NULL       | N16 6PS  | England      | NULL       |
+|    1006 | Jouets Et Ours | 1 Rue Amusement | Paris       | NULL       | 45678    | France       | NULL       |
++---------+----------------+-----------------+-------------+------------+----------+--------------+------------+
+6 rows in set (0.07 sec)
+
+mysql> ALTER TABLE Vendors
+    -> DROP COLUMN vend_phone;
+ERROR 1146 (42S02): Table 'crashcourse.Vendors' doesn't exist
+mysql> ALTER TABLE vendors DROP COLUMN vend_phone;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM vendors;
++---------+----------------+-----------------+-------------+------------+----------+--------------+
+| vend_id | vend_name      | vend_address    | vend_city   | vend_state | vend_zip | vend_country |
++---------+----------------+-----------------+-------------+------------+----------+--------------+
+|    1001 | Anvils R Us    | 123 Main Street | Southfield  | MI         | 48075    | USA          |
+|    1002 | LT Supplies    | 500 Park Street | Anytown     | OH         | 44333    | USA          |
+|    1003 | ACME           | 555 High Street | Los Angeles | CA         | 90046    | USA          |
+|    1004 | Furball Inc.   | 1000 5th Avenue | New York    | NY         | 11111    | USA          |
+|    1005 | Jet Set        | 42 Galaxy Road  | London      | NULL       | N16 6PS  | England      |
+|    1006 | Jouets Et Ours | 1 Rue Amusement | Paris       | NULL       | 45678    | France       |
++---------+----------------+-----------------+-------------+------------+----------+--------------+
+6 rows in set (0.07 sec)
+
+mysql> ALTER TABLE orderitems
+    -> ADD CONSTRAINT fk_orderitems_orders
+    -> FOREIGN KEY (order_num) REFERENCES orders (order_num);
+ERROR 1022 (23000): Can't write; duplicate key in table '#sql-a06_1ffa'
+mysql> ALTER TABLE orderitems
+    -> ADD CONSTRAINT fk_orderitems_products FOREIGN KEY (prod_id)
+    -> REFERENCES products (prod_id);
+ERROR 1022 (23000): Can't write; duplicate key in table '#sql-a06_1ffa'
+mysql> ALTER TABLE orders
+    -> ADD CONSTRAINT fk_orders_customers FOREIGN KEY (cust_id)
+    -> REFERENCES customers (cust_id);
+ERROR 1022 (23000): Can't write; duplicate key in table '#sql-a06_1ffa'
+mysql> ALTER TABLE products
+    -> ADD CONSTRAINT fk_products_vendors
+    -> FOREIGN KEY (vend_id) REFERENCES vendors (vend_id);
+ERROR 1022 (23000): Can't write; duplicate key in table '#sql-a06_1ffa'
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| orders2               |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+8 rows in set (0.06 sec)
+
+mysql> DROP TABLE customers2;
+ERROR 1051 (42S02): Unknown table 'crashcourse.customers2'
+mysql> DROP TABLE orders2;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+7 rows in set (0.06 sec)
+
+mysql> CREATE Table customers3;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> CREATE TABLE orders2 ( order_num int NOT NULL AUTO_INCREMENT, order_dte datetime NOT NULL , cvust_id int NOT NULL , PRIMARY KEY (order_num) ) ENGINE = InnoDB;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> RENAME TABLE orders2 to orders3;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| orders3               |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+8 rows in set (0.07 sec)
+
+mysql> RENAME TABLE backup_customers TO Customers,
+    -> backup_vendors TO vendors,
+    -> backup_products TO products;
+ERROR 1017 (HY000): Can't find file: './crashcourse/backup_customers.frm' (errno: 2 - No such file or directory)
+mysql> '
+    '> ;l
+    '> ;
+    '> Ctrl-C -- exit!
+Aborted

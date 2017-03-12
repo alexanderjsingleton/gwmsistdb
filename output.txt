@@ -1,0 +1,1229 @@
+Script started on Fri Feb 24 10:26:30 2017
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;32m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004hlls[?1l>[?2004l
+]2;ls -G]1;ls[31mcreate.sql[39;49m[0m        mysqlconnMac.txt  output.txt
+[31mmysql[39;49m[0m             [31mmysqlconnRoss.txt[39;49m[0m [31mpopulate.sql[39;49m[0m
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;32m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004httocuh a    uch alexsing           t  ls./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=<alexsing@gwu.edu>_mysqlout_3.txt[K[P[15C [16D[1C[P[31C [32D[1C[1C[1C[1C[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_3.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3637
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE cfras[K[K[Kr[K[Krashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| crashcourse        |
+| innodb             |
+| istm6202           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.07 sec)
+
+mysql> SHOW TABLES;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.07 sec)
+
+mysql> DESCRIBE CUSTOMER[K[K[K[K[K[K[K[Kcustomers;
++--------------+-----------+------+-----+---------+----------------+
+| Field        | Type      | Null | Key | Default | Extra          |
++--------------+-----------+------+-----+---------+----------------+
+| cust_id      | int(11)   | NO   | PRI | NULL    | auto_increment |
+| cust_name    | char(50)  | NO   |     | NULL    |                |
+| cust_address | char(50)  | YES  |     | NULL    |                |
+| cust_city    | char(50)  | YES  |     | NULL    |                |
+| cust_state   | char(5)   | YES  |     | NULL    |                |
+| cust_zip     | char(10)  | YES  |     | NULL    |                |
+| cust_country | char(50)  | YES  |     | NULL    |                |
+| cust_contact | char(50)  | YES  |     | NULL    |                |
+| cust_email   | char(255) | YES  |     | NULL    |                |
++--------------+-----------+------+-----+---------+----------------+
+9 rows in set (0.06 sec)
+
+mysql> SHOW STATUS;
++-----------------------------------------------+-------------+
+| Variable_name                                 | Value       |
++-----------------------------------------------+-------------+
+| Aborted_clients                               | 3           |
+| Aborted_connects                              | 3           |
+| Binlog_cache_disk_use                         | 0           |
+| Binlog_cache_use                              | 3777        |
+| Binlog_stmt_cache_disk_use                    | 0           |
+| Binlog_stmt_cache_use                         | 16          |
+| Bytes_received                                | 458         |
+| Bytes_sent                                    | 4371        |
+| Com_admin_commands                            | 0           |
+| Com_assign_to_keycache                        | 0           |
+| Com_alter_db                                  | 0           |
+| Com_alter_db_upgrade                          | 0           |
+| Com_alter_event                               | 0           |
+| Com_alter_function                            | 0           |
+| Com_alter_procedure                           | 0           |
+| Com_alter_server                              | 0           |
+| Com_alter_table                               | 0           |
+| Com_alter_tablespace                          | 0           |
+| Com_alter_user                                | 0           |
+| Com_analyze                                   | 0           |
+| Com_begin                                     | 0           |
+| Com_binlog                                    | 0           |
+| Com_call_procedure                            | 0           |
+| Com_change_db                                 | 1           |
+| Com_change_master                             | 0           |
+| Com_check                                     | 0           |
+| Com_checksum                                  | 0           |
+| Com_commit                                    | 0           |
+| Com_create_db                                 | 0           |
+| Com_create_event                              | 0           |
+| Com_create_function                           | 0           |
+| Com_create_index                              | 0           |
+| Com_create_procedure                          | 0           |
+| Com_create_server                             | 0           |
+| Com_create_table                              | 0           |
+| Com_create_trigger                            | 0           |
+| Com_create_udf                                | 0           |
+| Com_create_user                               | 0           |
+| Com_create_view                               | 0           |
+| Com_dealloc_sql                               | 0           |
+| Com_delete                                    | 0           |
+| Com_delete_multi                              | 0           |
+| Com_do                                        | 0           |
+| Com_drop_db                                   | 0           |
+| Com_drop_event                                | 0           |
+| Com_drop_function                             | 0           |
+| Com_drop_index                                | 0           |
+| Com_drop_procedure                            | 0           |
+| Com_drop_server                               | 0           |
+| Com_drop_table                                | 0           |
+| Com_drop_trigger                              | 0           |
+| Com_drop_user                                 | 0           |
+| Com_drop_view                                 | 0           |
+| Com_empty_query                               | 0           |
+| Com_execute_sql                               | 0           |
+| Com_flush                                     | 0           |
+| Com_get_diagnostics                           | 0           |
+| Com_grant                                     | 0           |
+| Com_ha_close                                  | 0           |
+| Com_ha_open                                   | 0           |
+| Com_ha_read                                   | 0           |
+| Com_help                                      | 0           |
+| Com_insert                                    | 0           |
+| Com_insert_select                             | 0           |
+| Com_install_plugin                            | 0           |
+| Com_kill                                      | 0           |
+| Com_load                                      | 0           |
+| Com_lock_tables                               | 0           |
+| Com_optimize                                  | 0           |
+| Com_preload_keys                              | 0           |
+| Com_prepare_sql                               | 0           |
+| Com_purge                                     | 0           |
+| Com_purge_before_date                         | 0           |
+| Com_release_savepoint                         | 0           |
+| Com_rename_table                              | 0           |
+| Com_rename_user                               | 0           |
+| Com_repair                                    | 0           |
+| Com_replace                                   | 0           |
+| Com_replace_select                            | 0           |
+| Com_reset                                     | 0           |
+| Com_resignal                                  | 0           |
+| Com_revoke                                    | 0           |
+| Com_revoke_all                                | 0           |
+| Com_rollback                                  | 0           |
+| Com_rollback_to_savepoint                     | 0           |
+| Com_savepoint                                 | 0           |
+| Com_select                                    | 2           |
+| Com_set_option                                | 0           |
+| Com_signal                                    | 0           |
+| Com_show_binlog_events                        | 0           |
+| Com_show_binlogs                              | 0           |
+| Com_show_charsets                             | 0           |
+| Com_show_collations                           | 0           |
+| Com_show_create_db                            | 0           |
+| Com_show_create_event                         | 0           |
+| Com_show_create_func                          | 0           |
+| Com_show_create_proc                          | 0           |
+| Com_show_create_table                         | 0           |
+| Com_show_create_trigger                       | 0           |
+| Com_show_databases                            | 2           |
+| Com_show_engine_logs                          | 0           |
+| Com_show_engine_mutex                         | 0           |
+| Com_show_engine_status                        | 0           |
+| Com_show_events                               | 0           |
+| Com_show_errors                               | 0           |
+| Com_show_fields                               | 7           |
+| Com_show_function_code                        | 0           |
+| Com_show_function_status                      | 0           |
+| Com_show_grants                               | 0           |
+| Com_show_keys                                 | 0           |
+| Com_show_master_status                        | 0           |
+| Com_show_open_tables                          | 0           |
+| Com_show_plugins                              | 0           |
+| Com_show_privileges                           | 0           |
+| Com_show_procedure_code                       | 0           |
+| Com_show_procedure_status                     | 0           |
+| Com_show_processlist                          | 0           |
+| Com_show_profile                              | 0           |
+| Com_show_profiles                             | 0           |
+| Com_show_relaylog_events                      | 0           |
+| Com_show_slave_hosts                          | 0           |
+| Com_show_slave_status                         | 0           |
+| Com_show_status                               | 1           |
+| Com_show_storage_engines                      | 0           |
+| Com_show_table_status                         | 0           |
+| Com_show_tables                               | 2           |
+| Com_show_triggers                             | 0           |
+| Com_show_variables                            | 0           |
+| Com_show_warnings                             | 0           |
+| Com_slave_start                               | 0           |
+| Com_slave_stop                                | 0           |
+| Com_stmt_close                                | 0           |
+| Com_stmt_execute                              | 0           |
+| Com_stmt_fetch                                | 0           |
+| Com_stmt_prepare                              | 0           |
+| Com_stmt_reprepare                            | 0           |
+| Com_stmt_reset                                | 0           |
+| Com_stmt_send_long_data                       | 0           |
+| Com_truncate                                  | 0           |
+| Com_uninstall_plugin                          | 0           |
+| Com_unlock_tables                             | 0           |
+| Com_update                                    | 0           |
+| Com_update_multi                              | 0           |
+| Com_xa_commit                                 | 0           |
+| Com_xa_end                                    | 0           |
+| Com_xa_prepare                                | 0           |
+| Com_xa_recover                                | 0           |
+| Com_xa_rollback                               | 0           |
+| Com_xa_start                                  | 0           |
+| Compression                                   | OFF         |
+| Connection_errors_accept                      | 0           |
+| Connection_errors_internal                    | 0           |
+| Connection_errors_max_connections             | 0           |
+| Connection_errors_peer_address                | 0           |
+| Connection_errors_select                      | 0           |
+| Connection_errors_tcpwrap                     | 0           |
+| Connections                                   | 3639        |
+| Created_tmp_disk_tables                       | 1           |
+| Created_tmp_files                             | 8           |
+| Created_tmp_tables                            | 5           |
+| Delayed_errors                                | 0           |
+| Delayed_insert_threads                        | 0           |
+| Delayed_writes                                | 0           |
+| Flush_commands                                | 1           |
+| Handler_commit                                | 0           |
+| Handler_delete                                | 0           |
+| Handler_discover                              | 0           |
+| Handler_external_lock                         | 0           |
+| Handler_mrr_init                              | 0           |
+| Handler_prepare                               | 0           |
+| Handler_read_first                            | 0           |
+| Handler_read_key                              | 0           |
+| Handler_read_last                             | 0           |
+| Handler_read_next                             | 0           |
+| Handler_read_prev                             | 0           |
+| Handler_read_rnd                              | 0           |
+| Handler_read_rnd_next                         | 40          |
+| Handler_rollback                              | 0           |
+| Handler_savepoint                             | 0           |
+| Handler_savepoint_rollback                    | 0           |
+| Handler_update                                | 0           |
+| Handler_write                                 | 35          |
+| Innodb_buffer_pool_dump_status                | not started |
+| Innodb_buffer_pool_load_status                | not started |
+| Innodb_buffer_pool_pages_data                 | 503         |
+| Innodb_buffer_pool_bytes_data                 | 8241152     |
+| Innodb_buffer_pool_pages_dirty                | 0           |
+| Innodb_buffer_pool_bytes_dirty                | 0           |
+| Innodb_buffer_pool_pages_flushed              | 15938       |
+| Innodb_buffer_pool_pages_free                 | 18312       |
+| Innodb_buffer_pool_pages_misc                 | 1           |
+| Innodb_buffer_pool_pages_total                | 18816       |
+| Innodb_buffer_pool_read_ahead_rnd             | 0           |
+| Innodb_buffer_pool_read_ahead                 | 0           |
+| Innodb_buffer_pool_read_ahead_evicted         | 0           |
+| Innodb_buffer_pool_read_requests              | 758729      |
+| Innodb_buffer_pool_reads                      | 229         |
+| Innodb_buffer_pool_wait_free                  | 0           |
+| Innodb_buffer_pool_write_requests             | 30584       |
+| Innodb_data_fsyncs                            | 24305       |
+| Innodb_data_pending_fsyncs                    | 0           |
+| Innodb_data_pending_reads                     | 0           |
+| Innodb_data_pending_writes                    | 0           |
+| Innodb_data_read                              | 3821568     |
+| Innodb_data_reads                             | 247         |
+| Innodb_data_writes                            | 32328       |
+| Innodb_data_written                           | 530475008   |
+| Innodb_dblwr_pages_written                    | 15938       |
+| Innodb_dblwr_writes                           | 4138        |
+| Innodb_have_atomic_builtins                   | ON          |
+| Innodb_log_waits                              | 0           |
+| Innodb_log_write_requests                     | 3992        |
+| Innodb_log_writes                             | 8036        |
+| Innodb_os_log_fsyncs                          | 12173       |
+| Innodb_os_log_pending_fsyncs                  | 0           |
+| Innodb_os_log_pending_writes                  | 0           |
+| Innodb_os_log_written                         | 6100480     |
+| Innodb_page_size                              | 16384       |
+| Innodb_pages_created                          | 275         |
+| Innodb_pages_read                             | 228         |
+| Innodb_pages_written                          | 15938       |
+| Innodb_row_lock_current_waits                 | 0           |
+| Innodb_row_lock_time                          | 0           |
+| Innodb_row_lock_time_avg                      | 0           |
+| Innodb_row_lock_time_max                      | 0           |
+| Innodb_row_lock_waits                         | 0           |
+| Innodb_rows_deleted                           | 14          |
+| Innodb_rows_inserted                          | 75          |
+| Innodb_rows_read                              | 120336      |
+| Innodb_rows_updated                           | 3679        |
+| Innodb_num_open_files                         | 31          |
+| Innodb_truncated_status_writes                | 0           |
+| Innodb_available_undo_logs                    | 128         |
+| Key_blocks_not_flushed                        | 0           |
+| Key_blocks_unused                             | 13394       |
+| Key_blocks_used                               | 4516        |
+| Key_read_requests                             | 824053      |
+| Key_reads                                     | 28          |
+| Key_write_requests                            | 265712      |
+| Key_writes                                    | 13396       |
+| Last_query_cost                               | 2.399000    |
+| Last_query_partial_plans                      | 1           |
+| Max_used_connections                          | 4           |
+| Not_flushed_delayed_rows                      | 0           |
+| Open_files                                    | 52          |
+| Open_streams                                  | 0           |
+| Open_table_definitions                        | 72          |
+| Open_tables                                   | 83          |
+| Opened_files                                  | 111714      |
+| Opened_table_definitions                      | 0           |
+| Opened_tables                                 | 0           |
+| Performance_schema_accounts_lost              | 0           |
+| Performance_schema_cond_classes_lost          | 0           |
+| Performance_schema_cond_instances_lost        | 0           |
+| Performance_schema_digest_lost                | 0           |
+| Performance_schema_file_classes_lost          | 0           |
+| Performance_schema_file_handles_lost          | 0           |
+| Performance_schema_file_instances_lost        | 0           |
+| Performance_schema_hosts_lost                 | 0           |
+| Performance_schema_locker_lost                | 0           |
+| Performance_schema_mutex_classes_lost         | 0           |
+| Performance_schema_mutex_instances_lost       | 0           |
+| Performance_schema_rwlock_classes_lost        | 0           |
+| Performance_schema_rwlock_instances_lost      | 0           |
+| Performance_schema_session_connect_attrs_lost | 0           |
+| Performance_schema_socket_classes_lost        | 0           |
+| Performance_schema_socket_instances_lost      | 0           |
+| Performance_schema_stage_classes_lost         | 0           |
+| Performance_schema_statement_classes_lost     | 0           |
+| Performance_schema_table_handles_lost         | 0           |
+| Performance_schema_table_instances_lost       | 0           |
+| Performance_schema_thread_classes_lost        | 0           |
+| Performance_schema_thread_instances_lost      | 0           |
+| Performance_schema_users_lost                 | 0           |
+| Prepared_stmt_count                           | 0           |
+| Qcache_free_blocks                            | 1           |
+| Qcache_free_memory                            | 1031352     |
+| Qcache_hits                                   | 0           |
+| Qcache_inserts                                | 0           |
+| Qcache_lowmem_prunes                          | 0           |
+| Qcache_not_cached                             | 571900      |
+| Qcache_queries_in_cache                       | 0           |
+| Qcache_total_blocks                           | 1           |
+| Queries                                       | 604106      |
+| Questions                                     | 15          |
+| Select_full_join                              | 0           |
+| Select_full_range_join                        | 0           |
+| Select_range                                  | 0           |
+| Select_range_check                            | 0           |
+| Select_scan                                   | 5           |
+| Slave_heartbeat_period                        | 0.000       |
+| Slave_last_heartbeat                          |             |
+| Slave_open_temp_tables                        | 0           |
+| Slave_received_heartbeats                     | 0           |
+| Slave_retried_transactions                    | 0           |
+| Slave_running                                 | OFF         |
+| Slow_launch_threads                           | 0           |
+| Slow_queries                                  | 0           |
+| Sort_merge_passes                             | 0           |
+| Sort_range                                    | 0           |
+| Sort_rows                                     | 0           |
+| Sort_scan                                     | 0           |
+| Ssl_accept_renegotiates                       | 0           |
+| Ssl_accepts                                   | 0           |
+| Ssl_callback_cache_hits                       | 0           |
+| Ssl_cipher                                    |             |
+| Ssl_cipher_list                               |             |
+| Ssl_client_connects                           | 0           |
+| Ssl_connect_renegotiates                      | 0           |
+| Ssl_ctx_verify_depth                          | 0           |
+| Ssl_ctx_verify_mode                           | 0           |
+| Ssl_default_timeout                           | 0           |
+| Ssl_finished_accepts                          | 0           |
+| Ssl_finished_connects                         | 0           |
+| Ssl_server_not_after                          |             |
+| Ssl_server_not_before                         |             |
+| Ssl_session_cache_hits                        | 0           |
+| Ssl_session_cache_misses                      | 0           |
+| Ssl_session_cache_mode                        | Unknown     |
+| Ssl_session_cache_overflows                   | 0           |
+| Ssl_session_cache_size                        | 0           |
+| Ssl_session_cache_timeouts                    | 0           |
+| Ssl_sessions_reused                           | 0           |
+| Ssl_used_session_cache_entries                | 0           |
+| Ssl_verify_depth                              | 0           |
+| Ssl_verify_mode                               | 0           |
+| Ssl_version                                   |             |
+| Table_locks_immediate                         | 128295      |
+| Table_locks_waited                            | 0           |
+| Table_open_cache_hits                         | 7           |
+| Table_open_cache_misses                       | 0           |
+| Table_open_cache_overflows                    | 0           |
+| Tc_log_max_pages_used                         | 0           |
+| Tc_log_page_size                              | 0           |
+| Tc_log_page_waits                             | 0           |
+| Threads_cached                                | 2           |
+| Threads_connected                             | 2           |
+| Threads_created                               | 4           |
+| Threads_running                               | 1           |
+| Uptime                                        | 1128724     |
+| Uptime_since_flush_status                     | 1128724     |
++-----------------------------------------------+-------------+
+341 rows in set (0.07 sec)
+
+mysql> SHOW GRANTS;
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Grants for alex@%                                                                                                                                                                                                                                                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, PROCESS, REFERENCES, INDEX, ALTER, SHOW DATABASES, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER ON *.* TO 'alex'@'%' IDENTIFIED BY PASSWORD <secret> WITH GRANT OPTION |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.06 sec)
+
+mysql> SHOW ERRORS;
+Empty set (0.06 sec)
+
+mysql> SHOW WARINGS[K[K[K[KNINGS;
+Empty set (0.06 sec)
+
+mysql> HELP SHOW;
+Name: 'SHOW'
+Description:
+SHOW has many forms that provide information about databases, tables,
+columns, or status information about the server. This section describes
+those following:
+
+SHOW AUTHORS
+SHOW {BINARY | MASTER} LOGS
+SHOW BINLOG EVENTS [IN 'log_name'] [FROM pos] [LIMIT [offset,] row_count]
+SHOW CHARACTER SET [like_or_where]
+SHOW COLLATION [like_or_where]
+SHOW [FULL] COLUMNS FROM tbl_name [FROM db_name] [like_or_where]
+SHOW CONTRIBUTORS
+SHOW CREATE DATABASE db_name
+SHOW CREATE EVENT event_name
+SHOW CREATE FUNCTION func_name
+SHOW CREATE PROCEDURE proc_name
+SHOW CREATE TABLE tbl_name
+SHOW CREATE TRIGGER trigger_name
+SHOW CREATE VIEW view_name
+SHOW DATABASES [like_or_where]
+SHOW ENGINE engine_name {STATUS | MUTEX}
+SHOW [STORAGE] ENGINES
+SHOW ERRORS [LIMIT [offset,] row_count]
+SHOW EVENTS
+SHOW FUNCTION CODE func_name
+SHOW FUNCTION STATUS [like_or_where]
+SHOW GRANTS FOR user
+SHOW INDEX FROM tbl_name [FROM db_name]
+SHOW MASTER STATUS
+SHOW OPEN TABLES [FROM db_name] [like_or_where]
+SHOW PLUGINS
+SHOW PROCEDURE CODE proc_name
+SHOW PROCEDURE STATUS [like_or_where]
+SHOW PRIVILEGES
+SHOW [FULL] PROCESSLIST
+SHOW PROFILE [types] [FOR QUERY n] [OFFSET n] [LIMIT n]
+SHOW PROFILES
+SHOW SLAVE HOSTS
+SHOW SLAVE STATUS
+SHOW [GLOBAL | SESSION] STATUS [like_or_where]
+SHOW TABLE STATUS [FROM db_name] [like_or_where]
+SHOW [FULL] TABLES [FROM db_name] [like_or_where]
+SHOW TRIGGERS [FROM db_name] [like_or_where]
+SHOW [GLOBAL | SESSION] VARIABLES [like_or_where]
+SHOW WARNINGS [LIMIT [offset,] row_count]
+
+like_or_where:
+    LIKE 'pattern'
+  | WHERE expr
+
+If the syntax for a given SHOW statement includes a LIKE 'pattern'
+part, 'pattern' is a string that can contain the SQL "%" and "_"
+wildcard characters. The pattern is useful for restricting statement
+output to matching values.
+
+Several SHOW statements also accept a WHERE clause that provides more
+flexibility in specifying which rows to display. See
+http://dev.mysql.com/doc/refman/5.5/en/extended-show.html.
+
+URL: http://dev.mysql.com/doc/refman/5.5/en/show.html
+
+
+mysql> SELECT prod_name FROM products;
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Detonator      |
+| Bird seed      |
+| Carrots        |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.07 sec)
+
+mysql> SEELCT[K[K[K[KLECT prod_id, prod_name, prod_prioce[K[K[Kce FROM products;
+
+^CCtrl-C -- sending "KILL QUERY 3637" to server ...
+Ctrl-C -- query aborted.
+^[[A^CCtrl-C -- sending "KILL 3637" to server ...
+Ctrl-C -- query aborted.
+;
+^[[A^[[A^[[B^[[B\                 ^CCtrl-C -- exit!
+Aborted
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_3.txt[K.txt 4.txt[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_4.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3646
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> useSELECT prod_id, prod_name, prod_price FROM products;[20G[21Pnam[39G[8GHELP SHOW;[K[8G[5PSHOW WARNINGS;[13GERRORS;[K[13GGRANTS;[13GSTATUS;[8GDESCRIBE customers;[8GSHOW TABLES;[K[8Gshow databases;[8GUSE crashcourse;[8Gquit;[K[8Ginformation_schema;[8Ghelp show;[K[8Ginformation_schema;[8Gquit;[K[8GUSE crashcourse;[8Gshow databases;[K[8GUSE crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> USE crashcourse;[8GSELECT prod_id, prod_name, prod_price FROM products;
++---------+----------------+------------+
+| prod_id | prod_name      | prod_price |
++---------+----------------+------------+
+| ANV01   | .5 ton anvil   |       5.99 |
+| ANV02   | 1 ton anvil    |       9.99 |
+| ANV03   | 2 ton anvil    |      14.99 |
+| DTNTR   | Detonator      |      13.00 |
+| FB      | Bird seed      |      10.00 |
+| FC      | Carrots        |       2.50 |
+| FU1     | Fuses          |       3.42 |
+| JP1000  | JetPack 1000   |      35.00 |
+| JP2000  | JetPack 2000   |      55.00 |
+| OL1     | Oil can        |       8.99 |
+| SAFE    | Safe           |      50.00 |
+| SLING   | Sling          |       4.49 |
+| TNT1    | TNT (1 stick)  |       2.50 |
+| TNT2    | TNT (5 sticks) |      10.00 |
++---------+----------------+------------+
+14 rows in set (0.06 sec)
+
+mysql> SELECT * FROM producrts[K[K[Kt[Kcts[K[Kc[K[Kts;
++---------+---------+----------------+------------+--                        a [K[A[79C[K[1B[K[A[79C                                        ---------------------------------------------------------------+
+| ANV01   |    1001 | .5 ton anvil   |       5.99 | .5 ton anvil, black, complete with handy hook                  |
+| ANV02   |    1001 | 1 ton anvil    |       9.99 | 1 ton anvil, black, complete with handy hook and carrying case |
+| ANV03   |    1001 | 2 ton anvil    |      14.99 | 2 ton anvil, black, complete with handy hook and carrying case |
+| DTNTR   |    1003 | Detonator      |      13.00 | Detonator (plunger powered), fuses not included                |
+| FB      |    1003 | Bird seed      |      10.00 | Large bag (suitable for road runners)                          |
+| FC      |    1003 | Carrots        |       2.50 | Carrots (rabbit hunting season only)                           |
+| FU1     |    1002 | Fuses          |       3.42 | 1 dozen, extra long                                            |
+| JP1000  |    1005 | JetPack 1000   |      35.00 | JetPack 1000, intended for single use                          |
+| JP2000  |    1005 | JetPack 2000   |      55.00 | JetPack 2000, multi-use                                        |
+| OL1     |    1002 | Oil can        |       8.99 | Oil can, red                                                   |
+| SAFE    |    1003 | Safe           |      50.00 | Safe with combination lock                                     |
+| SLING   |    1003 | Sling          |       4.49 | Sling, one size fits all                                       |
+| TNT1    |    1003 | TNT (1 stick)  |       2.50 | TNT, red, single stick                                         |
+| TNT2    |    1003 | TNT (5 sticks) |      10.00 | TNT, red, pack of 10 sticks                                    |
++---------+---------+----------------+------------+----------------------------------------------------------------+
+14 rows in set (0.08 sec)
+
+mysql> SELECG[KT vesnd_id FROM prodcuts[K[K[K[Kucts;
+ERROR 1054 (42S22): Unknown column 'vesnd_id' in 'field list'
+mysql> SELECT vesnd_id FROM products;[P [P [P [P [P [P [P [P [1@v [1@e [1@s [1@n [1@d [1@_ [1@i [1@d  FROM products;
+ERROR 1054 (42S22): Unknown column 'vesnd_id' in 'field list'
+mysql> SELECT vesnd_id FROM products;;[K;[K;[K;[K;[K;[K;[K;[KP;R;O;D;U;C;T;S;
+ERROR 1146 (42S02): Table 'crashcourse.PRODUCTS' doesn't exist
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.06 sec)
+
+mysql> show tables;[8GSELECT vesnd_id FROM PRODUCTS;;[K;[K;[K;[K;[K;[K;[K;[Kp;r;o;d;c;u;;[K;[Kc;u;;[K;[Ku;c;t;s;
+ERROR 1054 (42S22): Unknown column 'vesnd_id' in 'field list'
+mysql> show [K[K[K[Kselect * fro,m p[K[K[Km produtc[K[Kcts;
++---------+---------+----------------+------------+----------------------------------------------------------------+
+| prod_id | vend_id | prod_name      | prod_price | prod_desc                                                      |
++---------+---------+----------------+------------+----------------------------------------------------------------+
+| ANV01   |    1001 | .5 ton anvil   |       5.99 | .5 ton anvil, black, complete with handy hook                  |
+| ANV02   |    1001 | 1 ton anvil    |       9.99 | 1 ton anvil, black, complete with handy hook and carrying case |
+| ANV03   |    1001 | 2 ton anvil    |      14.99 | 2 ton anvil, black, complete with handy hook and carrying case |
+| DTNTR   |    1003 | Detonator      |      13.00 | Detonator (plunger powered), fuses not included                |
+| FB      |    1003 | Bird seed      |      10.00 | Large bag (suitable for road runners)                          |
+| FC      |    1003 | Carrots        |       2.50 | Carrots (rabbit hunting season only)                           |
+| FU1     |    1002 | Fuses          |       3.42 | 1 dozen, extra long                                            |
+| JP1000  |    1005 | JetPack 1000   |      35.00 | JetPack 1000, intended for single use                          |
+| JP2000  |    1005 | JetPack 2000   |      55.00 | JetPack 2000, multi-use                                        |
+| OL1     |    1002 | Oil can        |       8.99 | Oil can, red                                                   |
+| SAFE    |    1003 | Safe           |      50.00 | Safe with combination lock                                     |
+| SLING   |    1003 | Sling          |       4.49 | Sling, one size fits all                                       |
+| TNT1    |    1003 | TNT (1 stick)  |       2.50 | TNT, red, single stick                                         |
+| TNT2    |    1003 | TNT (5 sticks) |      10.00 | TNT, red, pack of 10 sticks                                    |
++---------+---------+----------------+------------+----------------------------------------------------------------+
+14 rows in set (0.06 sec)
+
+mysql> select * from products;[8G[7@SELECT vesnd_id FROM[38Gn[Pd[Pd[1@ndd_id FROM products;
++---------+
+| vend_id |
++---------+
+|    1001 |
+|    1001 |
+|    1001 |
+|    1002 |
+|    1002 |
+|    1003 |
+|    1003 |
+|    1003 |
+|    1003 |
+|    1003 |
+|    1003 |
+|    1003 |
+|    1005 |
+|    1005 |
++---------+
+14 rows in set (0.07 sec)
+
+mysql> SELECT vend_id FROM products;[1@Dv
+ERROR 1054 (42S22): Unknown column 'Dvend_id' in 'field list'
+mysql> SELECT Dvend_id FROM products;[1@ v[1@I [1@S [1@T [1@I [1@O [1@M [1@C [1@T [P [P [P [P [1@N [1@C [1@T  [1@ v v[Pvvend_id FROM products;
++---------+
+| vend_id |
++---------+
+|    1001 |
+|    1002 |
+|    1003 |
+|    1005 |
++---------+
+4 rows in set (0.22 sec)
+
+mysql> SELECT DISTINCT vend_id FROM products;[Pp[Pp[Pp[Pp[Ppproducts;
+ERROR 1054 (42S22): Unknown column 'vend_id' in 'field list'
+mysql> SELECT DISTINCT vend_id products;[32G[5@FROM p[46G[Pp[Pp[Pp[Pp[Pp[Pp[1@,p[1@ pproducts;
+ERROR 1054 (42S22): Unknown column 'vend_id' in 'field list'
+mysql> SELECT DISTINCT vend_id, products;[31G[P [41G[32G[5@FROM p[46G[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kprod_name FROM products LIMIT 5;
++--------------+
+| prod_name    |
++--------------+
+| .5 ton anvil |
+| 1 ton anvil  |
+| 2 ton anvil  |
+| Detonator    |
+| Bird seed    |
++--------------+
+5 rows in set (0.06 sec)
+
+mysql> selec[K[K[K[K[Ksele[K[K[K[KSELECT prod_name FROMproducts[K[K[K[K[K[K[K[K products LIMIIT[K[KT 5,5;
++--------------+
+| prod_name    |
++--------------+
+| Carrots      |
+| Fuses        |
+| JetPack 1000 |
+| JetPack 2000 |
+| Oil can      |
++--------------+
+5 rows in set (0.06 sec)
+
+mysql> qut[Kit;
+Bye
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;32m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_4.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3679
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> quit;
+Bye
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;32m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_4.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4527
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE CR[K[Kcrashcourse;
+;
+quit
+;
+^CCtrl-C -- exit!
+Aborted
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_4.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4532
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> Use [K[K[Kuse[K[K[KUSE CR[K[Kcrashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT proe[Kd_name FROM products LIMIT 5;
++--------------+
+| prod_name    |
++--------------+
+| .5 ton anvil |
+| 1 ton anvil  |
+| 2 ton anvil  |
+| Detonator    |
+| Bird seed    |
++--------------+
+5 rows in set (0.07 sec)
+
+mysql> SELECR[KT prod_name FROM products LIMIT 5,5;
+;
+^CCtrl-C -- sending "KILL QUERY 4532" to server ...
+Ctrl-C -- query aborted.
+d 
+;
+^CCtrl-C -- sending "KILL 4532" to server ...
+Ctrl-C -- query aborted.
+^D
+
+^CCtrl-C -- exit!
+Aborted
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_4.txt'
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'alex'@'162-193-95-74.lightspeed.mssnks.sbcglobal.net' (using password: NO)
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K3[4C4[4C[A[45D[K[1B[K[A[19C./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K3[4C4[4C[A[45D[K[1B[K[A[19C[?1l>[?2004l[1B[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_4.txt'
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'alex'@'162-193-95-74.lightspeed.mssnks.sbcglobal.net' (using password: NO)
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_4.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4541
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USe cr[K[K[K[Kse crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT prod_name FROM produts[K[Kcts LM[KIMIT 5,5;
++--------------+
+| prod_name    |
++--------------+
+| Carrots      |
+| Fuses        |
+| JetPack 1000 |
+| JetPack 2000 |
+| Oil can      |
++--------------+
+5 rows in set (0.09 sec)
+
+mysql> SELECT prod_name FROM produts LIMIT;[K 5;
+ERROR 1146 (42S02): Table 'crashcourse.produts' doesn't exist
+mysql> SELECT prod_name FROM produts LIMIT 5;
+ERROR 1146 (42S02): Table 'crashcourse.produts' doesn't exist
+mysql> SELECT * [K[K[K[K[K[K[Kshow databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| crashcourse        |
+| innodb             |
+| istm6202           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+7 rows in set (0.06 sec)
+
+mysql> show[K[K[K[Kuse crashcourse;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.06 sec)
+
+mysql> SELECT fr[K[Kpro_name FROM products Limit[K[K[K[K[Klimit 5,5;
+ERROR 1054 (42S22): Unknown column 'pro_name' in 'field list'
+mysql> SELECT pro_name FROM products limit 5,5;[1@d_
++--------------+
+| prod_name    |
++--------------+
+| Carrots      |
+| Fuses        |
+| JetPack 1000 |
+| JetPack 2000 |
+| Oil can      |
++--------------+
+5 rows in set (0.07 sec)
+
+mysql> SELECT prod_name FROM products limit 5,5;;[K;[K
++--------------+
+| prod_name    |
++--------------+
+| .5 ton anvil |
+| 1 ton anvil  |
+| 2 ton anvil  |
+| Detonator    |
+| Bird seed    |
++--------------+
+5 rows in set (0.06 sec)
+
+mysql> SELECT prod_name FROM products limit 5;,5;[Pt[Pt[Pt[Pttt[P [1@L [1@I [1@M [1@I [1@T  5,5;
++--------------+
+| prod_name    |
++--------------+
+| Carrots      |
+| Fuses        |
+| JetPack 1000 |
+| JetPack 2000 |
+| Oil can      |
++--------------+
+5 rows in set (0.08 sec)
+
+mysql> SELECT prod_name FROM products LIMIT 10,32[K[K2;
++-----------+
+| prod_name |
++-----------+
+| Safe      |
+| Sling     |
++-----------+
+2 rows in set (0.06 sec)
+
+mysql> SELECT prod_ma[Kname[K[K[K[K[Kname FROM products LIMIT 2 OFFSET 10;
++-----------+
+| prod_name |
++-----------+
+| Safe      |
+| Sling     |
++-----------+
+2 rows in set (0.06 sec)
+
+mysql> SELECT products.pro_name FROM products;[1@d_
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Detonator      |
+| Bird seed      |
+| Carrots        |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.09 sec)
+
+mysql> SELECT products.prod_name FROM crashcouse[K[Krse.prodcu[K[Kucts;
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Detonator      |
+| Bird seed      |
+| Carrots        |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.06 sec)
+
+mysql> SEE
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SEE' at line 1
+mysql> SELECT PROD[K[K[K[Kprod_name --this is a come[Kment FROM products;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a comment FROM products' at line 1
+mysql> SELECT prod_name --this is a comment FROM products;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'a comment FROM products' at line 1
+mysql> SELECT prod_name --this is a comment FROM products;[1@ t
+    -> ;
+ERROR 1054 (42S22): Unknown column 'prod_name' in 'field list'
+mysql> ;SELECT prod_name -- this is a comment FROM products;
+    -> 
+    -> ;
+ERROR 1054 (42S22): Unknown column 'prod_name' in 'field list'
+mysql> SELECT prod_name
+    -> -- this isa [K a coment[K[K[Kment
+    -> from[K[K[K[KFROM proodcu[K[K[K[Kduts[K[Kcts;
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Detonator      |
+| Bird seed      |
+| Carrots        |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.07 sec)
+
+mysql> SELECRT[K[KT FR[K[Kprod_name[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K# This isa[K a coment[K[K[Kment 
+mysql> SELECT f[Kprdo[K[Kod_name
+    -> FROM products;
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Detonator      |
+| Bird seed      |
+| Carrots        |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.07 sec)
+
+mysql> /* SELECT prod)[K_name, vend_id FROM or[K[Kproduts[K[Kcts; */
+mysql> /* SELECT prod_name, vend_id FROM products; */[8G[3P[24G FROM products;[K
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Detonator      |
+| Bird seed      |
+| Carrots        |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.06 sec)
+
+mysql> SELECT prod_name FROM products;[8G[3@/* [27G, vend_id FROM products; */d FRO
+mysql> /* SELECT prod_name, vend_id FROM products; */OM products; */[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kndid[K[K_id
+   /*> FROM produc[K[K[K[K[K[K[K[K[K[K
+   /*> SELECT prod_name FROM products;
+   /*> ;
+   /*> ;
+   /*> Ctrl-C -- exit!
+Aborted
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_4.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4546
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> /[Kuse ;[KSELECT prod_name FROM products;[8G[3@/* [27G, vend_id[K FROM products; */[8G[3P[24G FROM products;[K[8G[3@/* [27G, vend_id FROM products; */[8G[3P[24G FROM products;[K[8G[17PF[22G[8GSELECT prod_name[8G# This is a comment[8GSELECT prod_name  FROM products;[8G[18PF[22G[8G-- this is a comment[8GSELECT prod_name[K[8G;[KSELECT prod_name -- this is a comment FROM products;[8G;[KSELECT prod_name -- this is a comment FROM products;[27G[Pt[59G[8G;[KSEE[K[K[Kuse carsh[K[K[K[Krashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> /* SELECRT [K[Kt[KT prod_name, vend_id
+   /*> from pro[K[K[K[K[K[K[KFROM products; */
+mysql> SELECT prod_name FROM[K[K[K[K
+    -> FROM produts;[K[K[Kcts;
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Detonator      |
+| Bird seed      |
+| Carrots        |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.07 sec)
+
+mysql> Ctrl-C -- exit!
+Aborted
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_4.txt[K[1C[1C[1C[1C[1C[1C.txt 5.txt[1C[1C[1C[1C[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_5.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4549
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> ;
+ERROR: 
+No query specified
+
+mysql> ;
+ERROR: 
+No query specified
+
+mysql> quit;
+Bye
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;32m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_5.txt[K[?1l>[?2004l
+]2;./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 ]1;./mysqlLogging to file 'alexsing@gwu.edu_mysqlout_5.txt'
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 4556
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SELECT pro)[K_name FROM products;
+ERROR 1046 (3D000): No database selected
+mysql> use crashcouse[K[Krse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select[K[K[K[K[K[KSLE[KE[KEL[K[K[K[KE[KSELECT PR[K[Kprod_name FROM products;
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Detonator      |
+| Bird seed      |
+| Carrots        |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.06 sec)
+
+mysql> SELKECT [K[K[K[K[K[K[KSELECT prod_name
+    -> FROM products 
+    -> ORDER by[K[KBT[KY pro_name;
+ERROR 1054 (42S22): Unknown column 'pro_name' in 'order clause'
+mysql> SELECT prod_name FROM products ORDER BY pro_name;[1@d_
++----------------+
+| prod_name      |
++----------------+
+| .5 ton anvil   |
+| 1 ton anvil    |
+| 2 ton anvil    |
+| Bird seed      |
+| Carrots        |
+| Detonator      |
+| Fuses          |
+| JetPack 1000   |
+| JetPack 2000   |
+| Oil can        |
+| Safe           |
+| Sling          |
+| TNT (1 stick)  |
+| TNT (5 sticks) |
++----------------+
+14 rows in set (0.07 sec)
+
+mysql> SELECt prod_id, prod_price, prod_name FROM products ORDER BY prod_price,  prod_name;
++---------+------------+----------------+
+| prod_id | prod_price | prod_name      |
++---------+------------+----------------+
+| FC      |       2.50 | Carrots        |
+| TNT1    |       2.50 | TNT (1 stick)  |
+| FU1     |       3.42 | Fuses          |
+| SLING   |       4.49 | Sling          |
+| ANV01   |       5.99 | .5 ton anvil   |
+| OL1     |       8.99 | Oil can        |
+| ANV02   |       9.99 | 1 ton anvil    |
+| FB      |      10.00 | Bird seed      |
+| TNT2    |      10.00 | TNT (5 sticks) |
+| DTNTR   |      13.00 | Detonator      |
+| ANV03   |      14.99 | 2 ton anvil    |
+| JP1000  |      35.00 | JetPack 1000   |
+| SAFE    |      50.00 | Safe           |
+| JP2000  |      55.00 | JetPack 2000   |
++---------+------------+----------------+
+14 rows in set (0.07 sec)
+
+mysql> ;
+ERROR: 
+No query specified
+
+mysql> ;
+ERROR: 
+No query specified
+
+mysql> ;SELECt prod_id, prod_price, prod_name FROM products ORDER BY prod_price,  prod_name;[A[80G[8G;[K[80G p[K[A[9G[K
+mysql> 
+mysql> 
+mysql> ;SELECt prod_id, prod_price, prod_name FROM products ORDER BY prod_price,  prod_name;[AECT prod_name FROM products ORDER BY prod_name;[K[80G p[K[A[58G[51G[P_[57G[8G[31PO[26G[8GFROM products[K[8GSELECT prod_name FROM products;[8Guse crashcourse;[K[8GSELECT pro_name FROM products;[8Gquit;[K[8G;[KSELECT prod_name FROM products;[8G[17PF[22G[8GSELECT prod_name[8GFROM products; */[8G/* SELECT prod_name, vend_id[8Guse crashcourse;[K[8G;[KSELECT prod_name FROM products;[8G[3@/* [27G, vend_id[K FROM products; */[8G[3P[24G FROM products;[K[8G[3@/* [27G, vend_id FROM products; */[8G[3P[24G FROM products;[K[8G[17PF[22G[8GSELECT prod_name[8G# This is a comment[8GSELECT prod_name  FROM products;[8G[18PF[22G[8G-- this is a comment[8GSELECT prod_name[K[8G;[KSELECT prod_name -- this is a comment FROM products;[8G;[KSELECT prod_name -- this is a comment FROM products;[27G[Pt[59G[8G;[KSEE;[K
+ERROR: 
+No query specified
+
+mysql> SELECT prod_id, prod_price, prod_name FROM prpoduc[K[K[K[K[Koducts ORDER BY 2, 3;
+;
+;
+^CCtrl-C -- sending "KILL QUERY 4556" to server ...
+Ctrl-C -- query aborted.
+
+^D
+ç
+
+çD^D
+^DERROR 2013 (HY000): Lost connection to MySQL server during query
+mysql> 
+mysql> ^DBye
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;32m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h[?1l>[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;32m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004hç[?1l>[?2004l
+]2;ç]1;çzsh: command not found: ç
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h[?1l>[?2004l
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004hççD[?1l>[?2004l
+]2;çD]1;çDzsh: command not found: çD
+[1m[7m%[27m[1m[0m                                                                                ]2;alexsingleton@Alexs-MBP: ~/Desktop/Lab_1_Files_Mac]1;..b_1_Files_Mac[0m[27m[24m[J[01;31m➜  [36mLab_1_Files_Mac[00m [K[?1h=[?2004h[?2004l
+
+Script done on Mon Feb 27 18:45:21 2017

@@ -1,0 +1,641 @@
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7631
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> INSERT INTO CUSTOMERS
+    -> VALUES(NULL,
+    -> 'Pep E. LaPew',
+    -> '100 Main Street',
+    -> 'Los Angeles',
+    -> 'CA',
+    -> '90046',
+    -> 'USA',
+    -> NULL,
+    -> NULL);
+ERROR 1146 (42S02): Table 'crashcourse.CUSTOMERS' doesn't exist
+mysql> INSERT INTO Customers VALUES(NULL, 'Pep E. LaPew', '100 Main Street', 'Los Angeles', 'CA', '90046', 'USA', NULL, NULL);
+ERROR 1146 (42S02): Table 'crashcourse.Customers' doesn't exist
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.07 sec)
+
+mysql> INSERT INTO customers VALUES(NULL, 'Pep E. LaPew', '100 Main Street', 'Los Angeles', 'CA', '90046', 'USA', NULL, NULL);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO customers(cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country,
+    -> cust_contact,
+    -> cust_email)
+    -> VALUES('Pep E. LaPew',
+    -> '100 Main Street',
+    -> 'Los Angeles',
+    -> 'CA',
+    -> '90046',
+    -> 'USA',
+    -> NULL,
+    -> NULL);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO customers(cust_name,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> VALUES('PEP E. LaPew',
+    -> NULL,
+    -> NULL,
+    -> '100 Main Street',
+    -> 'Los Angeles',
+    -> 'CA',
+    -> '90046',
+    -> 'USA');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO customers(cust_name, 
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> VALUES('Pep E. LaPew',
+    -> '100 Main Street',
+    -> 'Los Angeles',
+    -> 'CA',
+    -> '90046',
+    -> 'USA');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO customers(cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> VALUES('M. Martian',
+    -> '42 Galaxy Way',
+    -> 'New York',
+    -> 'NY',
+    -> '11213',
+    -> 'USA');
+Query OK, 1 row affected (0.59 sec)
+
+mysql> INSERT INTO customers(cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> VALUES(
+    -> 'Pep E. LawPew',
+    -> '100 Main Street',
+    -> 'Los Angeles',
+    -> 'CA',
+    -> '90046',
+    -> 'USA'
+    -> ),
+    -> (
+    -> 'M. Martian',
+    -> '42 Galaxy Way',
+    -> 'New York',
+    -> 'NY',
+    -> '11213',
+    -> 'USA'
+    -> );
+Query OK, 2 rows affected (0.07 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.06 sec)
+
+mysql> CREATE TABLE custnew;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> CREATE TABLE custnew (
+    -> cust_id int,
+    -> cust_contact varchar(255),
+    -> cust_contact varchar(255),
+    -> 
+    -> \e
+Terminal close -- exit!
+Aborted
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7639
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.07 sec)
+
+mysql> CREATE TABLE custnew (
+    -> cust_id int,
+    -> cust_contact varchar(255),
+    -> cust_email varchar(255),
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> SELECT cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country
+    -> FROM custnew;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '
+cust_address,
+cust_city,
+cust_state,
+cust_zip,
+cust_country)
+SELECT cust_id,
+cu' at line 5
+mysql> ls
+    -> l;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ls
+l' at line 1
+mysql> show tables
+    -> ;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+6 rows in set (0.07 sec)
+
+mysql> CREATE TABLE custnew (
+    -> cust_id int,
+    -> cust_contact varchar(255),
+    -> cust_email varchar(255),
+    -> cust_name varchar(255),
+    -> cust_address varchar(255),
+    -> cust_city varchar(255),
+    -> cust_state varchar(255),
+    -> cust_zip varchar(255),
+    -> cust_country varchar(255))
+    -> SELECT cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country
+    -> FROM custnew;
+ERROR 1146 (42S02): Table 'crashcourse.custnew' doesn't exist
+mysql> CREATE TABLE custnew (
+    -> cust_id int,
+    -> cust_contact varchar(255),
+    -> cust_email varchar(255),
+    -> cust_name varchar(255),
+    -> cust_address varchar(255),
+    -> cust_city varchar(255),
+    -> cust_state varchar(255),
+    -> cust_zip varchar(255),
+    -> cust_country varchar(255)
+    -> );
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> INSERT INTO customers (
+    -> cust_id int,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> SELECT cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country
+    -> FROM custnew;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int,
+cust_contact,
+cust_email,
+cust_name,
+cust_address,
+cust_city,
+cust_state,
+c' at line 2
+mysql> 
+mysql> INSERT INTO customers (
+    -> cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> SELECT cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country
+    -> FROM custnew;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+7 rows in set (0.06 sec)
+
+mysql> select * from custnew;
+Empty set (0.08 sec)
+
+mysql> 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7829
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+7 rows in set (0.06 sec)
+
+mysql> select * from custnew;
+Empty set (0.07 sec)
+
+mysql> Ctrl-C -- exit!
+Aborted
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7832
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> 
+mysql> INSERT INTO custnew(cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+    -> VALUES( 'Glenn Frey', '1New York Minute Street', 'New York', 'NY', '10001', 'USA' ), 
+    -> ( 'Don Henley', '100 Hotel Califronia', 'Los Angelez', 'CA', '90210', 'USA' );
+Query OK, 2 rows affected (0.17 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from custnew;
++---------+--------------+------------+------------+-------------------------+-------------+------------+----------+--------------+
+| cust_id | cust_contact | cust_email | cust_name  | cust_address            | cust_city   | cust_state | cust_zip | cust_country |
++---------+--------------+------------+------------+-------------------------+-------------+------------+----------+--------------+
+|    NULL | NULL         | NULL       | Glenn Frey | 1New York Minute Street | New York    | NY         | 10001    | USA          |
+|    NULL | NULL         | NULL       | Don Henley | 100 Hotel Califronia    | Los Angelez | CA         | 90210    | USA          |
++---------+--------------+------------+------------+-------------------------+-------------+------------+----------+--------------+
+2 rows in set (0.07 sec)
+
+mysql> TRUNCATE TABLE custnew;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+    -> VALUES(1, 'Glenn', 'glenn@eagles.com' 'Glenn Frey', '1New York Minute Street', 'New York', 'NY', '10001', 'USA' ), 
+    -> ( 2, 'Don', 'don@eagles.com', Don Henley', '100 Hotel Califronia', 'Los Angelez', 'CA', '90210', 'USA' );
+    '> 
+    '> ;
+    '> ;
+    '> œ
+
+    '> Ctrl-C -- exit!
+Aborted
+ERROR 1045 (28000): Access denied for user 'alex'@'162-193-95-74.lightspeed.mssnks.sbcglobal.net' (using password: YES)
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7835
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+7 rows in set (0.07 sec)
+
+mysql> select * from custnew;
+Empty set (0.06 sec)
+
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+    -> VALUES(1, 'Glenn', 'glenn@eagles.com' 'Glenn Frey', '1New York Minute Street', 'New York', 'NY', '10001', 'USA' ), 
+    -> ( 2, 'Don', 'don@eagles.com', Don Henley', '100 Hotel Califronia', 'Los Angelez', 'CA', '90210', 'USA' );
+    '> cance;
+    '> l
+    '> l;
+    '> end
+    '> 
+    '> 
+    '> exit
+    '> Ctrl-C -- exit!
+Aborted
+ERROR 1045 (28000): Access denied for user 'alex'@'162-193-95-74.lightspeed.mssnks.sbcglobal.net' (using password: NO)
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7837
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_crashcourse |
++-----------------------+
+| custnew               |
+| customers             |
+| orderitems            |
+| orders                |
+| productnotes          |
+| products              |
+| vendors               |
++-----------------------+
+7 rows in set (0.07 sec)
+
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+    -> VALUES(1, 'Glenn', 'glenn@eagles.com', 'Glenn Frey', '1New York Minute Street', 'New York', 'NY', '10001', 'USA' ), 
+    -> (2, 'Don', 'don@eagles.com', Don Henley', '100 Hotel Califronia', 'Los Angelez', 'CA', '90210', 'USA' );
+    '> ;
+    '> Ctrl-C -- exit!
+Aborted
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7838
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> NSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+    -> VALUES(1, 'Glenn', 'glenn@eagles.com', 'Glenn Frey', '1New York Minute Street', 'New York', 'NY', '10001', 'USA' );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, c' at line 1
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) VALUES(1, 'Glenn', 'glenn@eagles.com', 'Glenn Frey', '1New York Minute Street', 'New York', 'NY', '10001', 'USA' );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) VALUES(2, 'Don', 'don@eagles.com', Don Henley', '100 Hotel Califronia', 'Los Angelez', 'CA', '90210', 'USA');
+    '> ;
+    '> Ctrl-C -- exit!
+Aborted
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7840
+Server version: 5.6.27-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crashcourse;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from custnew;
++---------+--------------+------------------+------------+-------------------------+-----------+------------+----------+--------------+
+| cust_id | cust_contact | cust_email       | cust_name  | cust_address            | cust_city | cust_state | cust_zip | cust_country |
++---------+--------------+------------------+------------+-------------------------+-----------+------------+----------+--------------+
+|       1 | Glenn        | glenn@eagles.com | Glenn Frey | 1New York Minute Street | New York  | NY         | 10001    | USA          |
++---------+--------------+------------------+------------+-------------------------+-----------+------------+----------+--------------+
+1 row in set (0.07 sec)
+
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) VALUES(1, 'Don', 'don@eagles.com', 'Don Henley', '100 Hotel Califronia', 'Los Angeles', 'CA', '90210', 'USA' );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from custnew;
++---------+--------------+------------------+------------+-------------------------+-------------+------------+----------+--------------+
+| cust_id | cust_contact | cust_email       | cust_name  | cust_address            | cust_city   | cust_state | cust_zip | cust_country |
++---------+--------------+------------------+------------+-------------------------+-------------+------------+----------+--------------+
+|       1 | Glenn        | glenn@eagles.com | Glenn Frey | 1New York Minute Street | New York    | NY         | 10001    | USA          |
+|       1 | Don          | don@eagles.com   | Don Henley | 100 Hotel Califronia    | Los Angeles | CA         | 90210    | USA          |
++---------+--------------+------------------+------------+-------------------------+-------------+------------+----------+--------------+
+2 rows in set (0.07 sec)
+
+mysql> INSERT INTO customers (
+    -> cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> SELECT cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country
+    -> FROM custnew;
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+mysql> select * from custnew;
++---------+--------------+------------------+------------+-------------------------+-------------+------------+----------+--------------+
+| cust_id | cust_contact | cust_email       | cust_name  | cust_address            | cust_city   | cust_state | cust_zip | cust_country |
++---------+--------------+------------------+------------+-------------------------+-------------+------------+----------+--------------+
+|       1 | Glenn        | glenn@eagles.com | Glenn Frey | 1New York Minute Street | New York    | NY         | 10001    | USA          |
+|       1 | Don          | don@eagles.com   | Don Henley | 100 Hotel Califronia    | Los Angeles | CA         | 90210    | USA          |
++---------+--------------+------------------+------------+-------------------------+-------------+------------+----------+--------------+
+2 rows in set (0.07 sec)
+
+mysql> TRUNCATE TABLE custnew;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+    -> VALUES(1, 'Glenn', 'glenn@eagles.com', 'Glenn Frey', '1New York Minute Street', 'New York', 'NY', '10001', 'USA' ),
+    -> VALUES(2, 'Don', 'don@eagles.com', 'Don Henley', '100 Hotel Califronia', 'Los Angeles', 'CA', '90210', 'USA' );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES(2, 'Don', 'don@eagles.com', 'Don Henley', '100 Hotel Califronia', 'Los An' at line 3
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+    -> VALUES(1, 'Glenn', 'glenn@eagles.com', 'Glenn Frey', '1New York Minute Street', 'New York', 'NY', '10001', 'USA' );
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO custnew(cust_id, cust_contact, cust_email, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+    -> VALUES(2, 'Don', 'don@eagles.com', 'Don Henley', '100 Hotel Califronia', 'Los Angeles', 'CA', '90210', 'USA' );
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO customers (
+    -> cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country)
+    -> SELECT cust_id,
+    -> cust_contact,
+    -> cust_email,
+    -> cust_name,
+    -> cust_address,
+    -> cust_city,
+    -> cust_state,
+    -> cust_zip,
+    -> cust_country
+    -> FROM custnew;
+Query OK, 2 rows affected (0.08 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> quit;
+mysql> Terminal close -- exit!
+Aborted
