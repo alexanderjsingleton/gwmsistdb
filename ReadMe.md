@@ -14,6 +14,10 @@ TODO:  For this lab, work through these sections in the *MariaDB Crashcourse* te
 
 TODO: Report terminal-output according to following command below:
 
+`./mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_1.txt`
+
+Please mind the `.` appended to the above command if within the working-directory- if not, please disregard and remove `.`
+
 `/mysql -h istm6202-lab01-a.cg8qnwa72czw.us-west-2.rds.amazonaws.com -P 3306 -u alex -p --tee=alexsing@gwu.edu_mysqlout_1.txt`
 
 ## MariaDB Crash Course Chapters
