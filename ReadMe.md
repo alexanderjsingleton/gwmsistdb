@@ -14,7 +14,7 @@ TODO:  For this lab, work through these sections in the *MariaDB Crashcourse* te
 
 TODO: Launch AWS instance terminal-output with termina-output according to the following convention:
 
-`./mysql -h [Your AWS-Endpoint] -P 3306 -u []Your User-name] -p --tee=[Desired name of terminal-output history].txt`
+`./mysql -h [Your AWS-Endpoint] -P 3306 -u [Your User-name] -p --tee=[Desired name of terminal-output history].txt`
 
 Example:
 
